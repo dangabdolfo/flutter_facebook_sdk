@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.NonNull
-import bolts.AppLinks
+import com.facebook.bolts.AppLinks
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsConstants
 import com.facebook.appevents.AppEventsLogger
@@ -186,9 +186,10 @@ class FlutterFacebookSdkPlugin : FlutterPlugin, MethodCallHandler, StreamHandler
     private fun initFbSdk() {
         FacebookSdk.setAutoInitEnabled(true)
         FacebookSdk.fullyInitialize()
-        logger = AppEventsLogger.newLogger(context)
 
-        val targetUri = AppLinks.getTargetUrlFromInboundIntent(context, activityPluginBinding!!.activity.intent)
+        logger = AppEventsLogger.newLogger(context!!)
+
+        //val targetUri = AppLinks.getTargetUrlFromInboundIntent(context, activityPluginBinding!!.activity.intent)
         AppLinkData.fetchDeferredAppLinkData(context, object : AppLinkData.CompletionHandler {
             override fun onDeferredAppLinkDataFetched(appLinkData: AppLinkData?) {
 
@@ -258,8 +259,8 @@ class FlutterFacebookSdkPlugin : FlutterPlugin, MethodCallHandler, StreamHandler
     override fun onNewIntent(intent: Intent?): Boolean {
         try {
             // some code
-            deepLinkUrl = AppLinks.getTargetUrl(intent).toString()
-            eventSink!!.success(deepLinkUrl)
+            // deepLinkUrl = AppLinks.getTargetUrl(intent).toString()
+            // eventSink!!.success(deepLinkUrl)
         } catch (e: NullPointerException) {
             // handler
             return false
