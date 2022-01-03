@@ -1,6 +1,7 @@
 import Flutter
 import UIKit
 import FBSDKCoreKit
+import FBSDKCoreKit_Basics
 
 let PLATFORM_CHANNEL = "flutter_facebook_sdk/methodChannel"
 let EVENTS_CHANNEL = "flutter_facebook_sdk/eventChannel"
@@ -175,7 +176,8 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         switch call.method {
         case "initializeSDK":
-            ApplicationDelegate.shared.initializeSDK()
+//            ApplicationDelegate.shared.initializeSDK()
+//            ApplicationDelegate.initialiszeSDK()
             result(nil)
             return
         case "getPlatformVersion":
@@ -211,7 +213,8 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
             }
             
         case "activateApp":
-            AppEvents.shared.activateApp()
+            AppEvents.activateApp()
+//            AppEvents.activateApp()
             result(true)
         case "logCompleteRegistration":
             guard let args = call.arguments else {
