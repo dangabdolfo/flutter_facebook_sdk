@@ -175,7 +175,7 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         switch call.method {
         case "initializeSDK":
-            ApplicationDelegate.initializeSDK(nil)
+            ApplicationDelegate.shared.initializeSDK()
             result(nil)
             return
         case "getPlatformVersion":
@@ -211,7 +211,7 @@ public class SwiftFlutterFacebookSdkPlugin: NSObject, FlutterPlugin, FlutterStre
             }
             
         case "activateApp":
-            AppEvents.activateApp()
+            AppEvents.shared.activateApp()
             result(true)
         case "logCompleteRegistration":
             guard let args = call.arguments else {
